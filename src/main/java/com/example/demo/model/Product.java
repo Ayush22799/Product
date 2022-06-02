@@ -35,7 +35,13 @@ public class Product {
     @NotNull
     private double price;
     			
-         public long getId() {
+         public Product(String name, double price ) {
+             this.name = name;
+             this.price = price;
+	}
+		
+		
+		public long getId() {
 	     return id;
      }
          public void setId(long id) {
@@ -55,8 +61,5 @@ public class Product {
          public void setPrice(double price) {
 	     this.price = price;
      }
-		public static Object builder() {
-			// TODO Auto-generated method stub
-			return null;
-		}
+		
 }

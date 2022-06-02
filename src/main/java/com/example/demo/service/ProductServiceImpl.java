@@ -16,10 +16,10 @@ import com.example.demo.repository.ProductRepository;
 @Transactional
 public class ProductServiceImpl implements ProductService {
        
-	@Autowired
 	private ProductRepository productRepository;
 	
-	public ProductServiceImpl(ProductRepository productRepository) {
+	@Autowired
+	public void setProductRepository(ProductRepository productRepository) {
         this.productRepository = productRepository;
     }
 	
@@ -55,13 +55,14 @@ public class ProductServiceImpl implements ProductService {
 		}
     }	
     	@Override
-    	public void deleteProduct(long productId) {
+    	public Product deleteProduct(long productId) {
+    		Product product = null;
     		Optional<Product> postgres = this.productRepository.findById(productId);
     		if(postgres.isPresent()) {
     			this.productRepository.delete(postgres.get());
-    		} else {
-    			throw new ResourceNotFoundException("Record Not Found with id "+productId);
     		}
+    		return product;
+    		
     	}
 
 		@Override

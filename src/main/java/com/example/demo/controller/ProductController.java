@@ -24,6 +24,10 @@ import com.example.demo.model.Product;
 public class ProductController {
     @Autowired       
 	private ProductService productService;
+    
+    public ProductController(ProductService productservice) {
+    	this.productService = productService;
+    }
            
            @GetMapping("/products")
            ResponseEntity<List<Product>> getAllProduct(){
